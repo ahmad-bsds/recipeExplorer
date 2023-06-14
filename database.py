@@ -10,7 +10,9 @@ db = SQLAlchemy(app)
 class User(db.Model):  # The application context keeps track of the application-level data during a request,
     # CLI command, or other activity.
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False, unique=True)
+    name = db.Column(db.String(80), nullable=False)
     username = db.Column(db.String(80), unique=True, nullable=False)
+    image = db.Column(db.LargeBinary, nullable= True)
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -33,7 +35,4 @@ def print_data(table):
     with app.app_context():
         data = table.query.all()  # Retrieve all records from the User table
         for user in data:
-            print(user.id, user.username)
-
-
-
+            return user.id, user.username
