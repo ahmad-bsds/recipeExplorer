@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from server import app
+from app import app
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///recipes-collections.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
