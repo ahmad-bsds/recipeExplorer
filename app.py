@@ -12,14 +12,15 @@ def home():
 # Add Recipe page
 @app.route('/addRecipe', methods=['GET', 'POST'])
 def add_recipe():
-    from database import User, insert_data
-    if request.method == 'POST':
-        name = request.form['name']
-        username = request.form['username_']
-        recipe = request.form['editordata']
-        insert_data(User, name=name, username=username, recipe=recipe)
-        return f'Action completed!'
     return render_template('addRecipe.html')
+    # from database import User, insert_data
+    # if request.method == 'POST':
+    #     name = request.form['name']
+    #     username = request.form['username_']
+    #     recipe = request.form['editordata']
+    #     insert_data(User, name=name, username=username, recipe=recipe)
+    #     return f'Action completed!'
+    # return render_template('addRecipe.html')
 
 
 @app.route('/explore', methods=['GET', 'POST'])
