@@ -1,13 +1,13 @@
-from flask import Flask, request
-from flask import render_template
+from flask import Flask, request, send_from_directory, render_template
 
-app = Flask(__name__)
+
+app = Flask(__name__, static_folder='./static')
 
 
 # Home page:
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return send_from_directory('templates', 'index.html')
 
 
 # Add Recipe page
@@ -20,7 +20,7 @@ def add_recipe():
         recipe = request.form['editordata']
         insert_data(User, name=name, username=username, recipe=recipe)
         return f'Action completed!'
-    return render_template('addRecipe.html')
+    return send_from_directory('templates', 'addRecipe.html')
 
 
 @app.route('/explore', methods=['GET', 'POST'])
