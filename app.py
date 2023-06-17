@@ -1,13 +1,12 @@
-from flask import Flask, request, send_from_directory, render_template
-
-
-app = Flask(__name__, static_folder='./static')
+from flask import Flask, request
+from flask import render_template
+app = Flask(__name__)
 
 
 # Home page:
 @app.route('/')
 def home():
-    return send_from_directory('templates', 'index.html')
+    return render_template('index.html')
 
 
 # Add Recipe page
@@ -20,7 +19,7 @@ def add_recipe():
         recipe = request.form['editordata']
         insert_data(User, name=name, username=username, recipe=recipe)
         return f'Action completed!'
-    return send_from_directory('templates', 'addRecipe.html')
+    return render_template('addRecipe.html')
 
 
 @app.route('/explore', methods=['GET', 'POST'])
@@ -33,4 +32,6 @@ def explore_recipies():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    from gunicorn.app.wsgiapp import run
+    run()
+
